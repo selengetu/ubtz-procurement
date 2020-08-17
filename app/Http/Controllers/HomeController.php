@@ -23,8 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-    
-        return view('welcome');
-
+        $order=DB::select('select * from V_PRODUCT_ORDERS t order by order_id');
+        return view('welcome')->with(['order'=>$order]);
     }
 }
