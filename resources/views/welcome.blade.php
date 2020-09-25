@@ -18,7 +18,7 @@
             <div class="info-box-content">
               <span class="info-box-text">Ирсэн захиалга</span>
               <span class="info-box-number">
-               0
+               753
              
               </span>
             </div>
@@ -33,7 +33,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Зарлагдсан тендер</span>
-              <span class="info-box-number">0</span>
+              <span class="info-box-number">45</span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -50,7 +50,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Гэрээний хэрэгжилт</span>
-              <span class="info-box-number">0</span>
+              <span class="info-box-number">68</span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -63,7 +63,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Дууссан худалдан авалт</span>
-              <span class="info-box-number">0</span>
+              <span class="info-box-number">155</span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -77,7 +77,7 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <h5 class="card-title">8-р сарын худалдан авалтын тайлан</h5>
+              <h5 class="card-title">9-р сарын худалдан авалтын тайлан</h5>
 
             </div>
             <!-- /.card-header -->

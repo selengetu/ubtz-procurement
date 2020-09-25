@@ -45,6 +45,7 @@
                                         <th>Эхлэх огноо</th>
                                         <th>Дуусах огноо</th>
                                         <th>Байгууллага</th>
+                                        <th>Захиалгын нэр</th>
                                         <th>Батлагдсан төсөв</th>
                                         <th>Төсвийн тодотгол</th>
                                         <th></th>
@@ -59,6 +60,7 @@
                                 <td>{{$budgets->begin_date}}</td>
                                 <td>{{$budgets->end_date}}</td>
                                 <td>{{$budgets->abbr}}</td>
+                                <td>{{$budgets->budget_description}}</td>
                                 <td>{{$budgets->plan_budget}}</td>
                                 <td>{{$budgets->expanded_money}}</td>
                                 <td class='m1'> <a class='btn btn-xs btn-info update' data-toggle='modal' data-target='#exampleModal' data-id="{{$budgets->id}}" tag='{{$budgets->id}}'><i class="fa fa-pencil-square-o" style="color: rgb(255, 255, 255); "></i></a> </td>
@@ -68,6 +70,49 @@
 
 
 
+                                    </tbody>
+                                </table>
+
+                                <table class="table table-striped table-bordered" id="E">
+                                    <thead>
+                                    <tr role="row">
+                                        <th>#</th>
+                                        <th>Барааны код</th>
+                                        <th>Барааны нэр</th>
+                                        <th>Нэг ширхэгийн үнэ</th>
+                                        <th>Тоо ширхэг</th>
+                                        <th>Нийт дүн</th>
+                                    
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>11372</td>
+                                            <td>Хар сандал</td>
+                                            <td>132000</td>
+                                            <td>10</td>
+                                            <td>1320000</td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>11372</td>
+                                            <td>Бичиг хэргийн ширээ</td>
+                                            <td>356000</td>
+                                            <td>10</td>
+                                            <td>3560000</td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>11372</td>
+                                            <td>Номын шкаф</td>
+                                            <td>1598000</td>
+                                            <td>2</td>
+                                            <td>3196000</td>
+                                            
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

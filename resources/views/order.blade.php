@@ -86,7 +86,7 @@
                                 <td>{{$orders->approveddate}}</td>
                                 <td>{{$orders->department_id}}</td>
                                 <td>{{$orders->orderstatus}}</td>
-                                <td>{{$orders->budgettype_name}}</td>
+                                <td>{{$orders->source_name}}</td>
                                 <td>{{$orders->ordertype_name}}</td>
                                 <td class='m1'> <a class='btn btn-xs btn-info updateorder' id="{{$orders->order_id}}" data-toggle='modal' data-target='#exampleModal' data-id="{{$orders->order_id}}" tag='{{$orders->order_id}}'><i class="fa fa-pencil-square-o" style="color: rgb(255, 255, 255); "></i></a></td>
                                 <td class='m1'> <a id="{{$orders->order_id}}" class='btn btn-xs btn-warning order1'  tag='{{$orders->order_id}}'><i class="fa fa-line-chart" style="color: rgb(255, 255, 255); "></i></a> </td>
@@ -325,7 +325,7 @@
                                 <label for="inputAddress2">Захиалгын төрөл</label>
                                 <select class="form-control select2" id="budgettype_id" name="budgettype_id" >
                                 @foreach($budget_type as $budget_types) 
-                                <option value="{{$budget_types->budgettype_id}}">{{$budget_types->budgettype_name}}</option>
+                                <option value="{{$budget_types->source_id}}">{{$budget_types->source_name}}</option>
                                  @endforeach
                                 </select>
                                </div>
@@ -674,7 +674,7 @@
                       "   <td class='m3'>" + qwe.expiredate + "</td>"+
                       "   <td class='m3'>" + qwe.department_id + "</td>"+
                       "   <td class='m3'>" + qwe.orderstatus + "</td>"+
-                      "   <td class='m3'>" + qwe.budgettype_name + "</td>"+
+                      "   <td class='m3'>" + qwe.source_name + "</td>"+
                       "   <td class='m3'>" + qwe.ordertype_name + "</td>"+
                       "</tr>";
                   

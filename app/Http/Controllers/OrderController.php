@@ -36,7 +36,7 @@ class OrderController extends Controller
         $department=DB::select('select * from CONST_DEPARTMENTS');
         $order=DB::select('select t.* from V_PRODUCT_ORDERS t');
         $response=DB::select('select t.* from CONST_RESPONSE t');
-        $budget_type=DB::select('select * from CONST_BUDGETTYPES');
+        $budget_type=DB::select('select * from CONST_TENDER_BUDGET_SOURCE');
         $order_type=DB::select('select * from CONST_ORDERTYPES');
         return view('order')->with(['department'=>$department,'order'=>$order,'budget_type'=>$budget_type,'order_type'=>$order_type,'response'=>$response]);
     }
@@ -44,7 +44,7 @@ class OrderController extends Controller
     {
         $department=DB::select('select * from CONST_DEPARTMENTS');
         $order=DB::select('select t.* from V_PRODUCT_ORDERS t');
-        $budget_type=DB::select('select * from CONST_BUDGETTYPES');
+        $budget_type=DB::select('select * from CONST_TENDER_BUDGET_SOURCE');
         $order_type=DB::select('select * from CONST_ORDERTYPES');
         return view('receivedorder')->with(['department'=>$department,'order'=>$order,'budget_type'=>$budget_type,'order_type'=>$order_type]);
     }

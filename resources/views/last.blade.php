@@ -8,7 +8,7 @@
                     <div class="card card-primary card-outline">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-md-6">
                                     <h5 class="m-0">Барааны үлдэгдэл</h5>
                                 </div>
                               
@@ -47,17 +47,37 @@
                         <table class="table table-striped table-bordered" >
                                     <thead>
                                     <tr role="row">
-                                  
+                                       
                                         <th>Байгууллагын нэр</th>
                                         <th>Барааны дугаар</th>
                                         <th>Барааны нэр</th>
-                                        <th>Хэмжих нэгж</th>
-                                        <th>Нэгж өртөг</th>
                                         <th> Нийт тоо</th>
                                       
                                     </tr>
                                     </thead>
                                     <tbody>
+                                        <tr>
+                                            <td>ТЧ-1</td>
+                                            <td>782309</td>
+                                            <td>Якорь-эд133</td>
+                                            <td>7</td>
+                                            
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td>ТЧ-2</td>
+                                            <td>782309</td>
+                                            <td>Якорь-эд133</td>
+                                            <td>0</td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td>ТЧ-3</td>
+                                            <td>782309</td>
+                                            <td>Якорь-эд133</td>
+                                            <td>2</td>
+                                            
+                                        </tr>
                                     </tbody>
                                     </table>
                                 </div>
