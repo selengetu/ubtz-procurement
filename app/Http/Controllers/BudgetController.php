@@ -9,6 +9,7 @@ use Request;
 use Session;
 use App\Department;
 use App\Budget;
+use App\Budgetdetail;
 use DB;
 use Auth;
 use Illuminate\Support\Facades\Input;
@@ -47,7 +48,17 @@ class BudgetController extends Controller
         $budget->save();
         return Redirect('budget');
     }
-
+    public function storedetail()
+    {
+        $budget = new Budgetdetail;
+        $budget->product_num = Request::input('product_num');
+        $budget->product_name = Request::input('product_name');
+        $budget->product_quantity = Request::input('product_quantity');
+        $budget->product_price = Request::input('product_price');
+        $budget->budget_id = Request::input('budget_id');
+        $budget->save();
+        return Redirect('budget');
+    }
     public function update(Request $request)
     {
         $department = DB::table('UBTZ_YEAR_BUDGET')

@@ -87,10 +87,18 @@ Route::get('/budget/delete/{id}', 'BudgetController@destroy');
 Route::post('/addbudget','BudgetController@store');
 Route::post('/updatebudget','BudgetController@update');
 Route::get('/budgetfill/{id?}',function($id = 0){
-    $dt=DB::table('UBTZ_YEAR_BUDGET')->where('id','=',$id)->get();
+    $dt=DB::table('V_UBTZ_YEAR_BUDGET')->where('id','=',$id)->get();
     return $dt;
 });
-
+Route::get('/budgetdetailfill/{id?}',function($id = 0){
+    $dt=DB::table('UBTZ_YEAR_BUDGET_DETAIL')->where('detail_id','=',$id)->get();
+    return $dt;
+});
+Route::get('/budgetdetailsfill/{id?}',function($id = 0){
+    $dt=DB::table('UBTZ_YEAR_BUDGET_DETAIL')->where('budget_id','=',$id)->get();
+    return $dt;
+});
+Route::post('/addbudgetdetail','BudgetController@storedetail');
 Route::get('/commession', 'CommessionController@index')->name('commession');
 Route::get('/commession/delete/{id}', 'CommessionController@destroy');
 Route::post('/addcommession','CommessionController@store');
