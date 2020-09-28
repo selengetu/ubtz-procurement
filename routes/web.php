@@ -100,6 +100,8 @@ Route::get('/budgetdetailsfill/{id?}',function($id = 0){
     return $dt;
 });
 Route::post('/addbudgetdetail','BudgetController@storedetail');
+
+
 Route::get('/commession', 'CommessionController@index')->name('commession');
 Route::get('/commession/delete/{id}', 'CommessionController@destroy');
 Route::post('/addcommession','CommessionController@store');
@@ -122,4 +124,12 @@ Route::get('/historydetail/{id?}',function($id = 0){
 });
 
 Route::get('/last', 'CommessionController@last')->name('last');
+});
+
+Route::get('/tendermember/delete/{id}', 'CommessionController@destroy');
+Route::post('/addtendermember','CommessionController@store');
+Route::post('/updatetendermember','CommessionController@update');
+Route::get('/tendermemberfill/{id?}',function($id = 0){
+    $dt=DB::table('tendermembers')->where('commess_id','=',$id)->get();
+    return $dt;
 });
