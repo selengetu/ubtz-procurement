@@ -213,7 +213,7 @@
                                     </table>
                                 </div>
                                 <div class="col-md-2">
-                                <button data-toggle="modal" data-target="#productmodal" class="btn btn-primary add" style="padding-bottom: 10px;"><i class="fa fa-plus" style="color: rgb(255, 255, 255);"> Бүтээгдэхүүн</i></button>
+                                <button data-toggle="modal" data-target="#productmodal" class="btn btn-primary addproduct" style="padding-bottom: 10px;"><i class="fa fa-plus" style="color: rgb(255, 255, 255);"> Бүтээгдэхүүн</i></button>
                                 </div>
                                 </div>
                         </div>
@@ -241,7 +241,7 @@
                                     </table>
                                 </div>
                                 <div class="col-md-2">
-                                <button data-toggle="modal" data-target="#visamodal" class="btn btn-primary add" style="padding-bottom: 10px;"><i class="fa fa-plus" style="color: rgb(255, 255, 255);"> Зөвшөөрөл</i></button>
+                                <button data-toggle="modal" data-target="#visamodal" class="btn btn-primary" style="padding-bottom: 10px;"><i class="fa fa-plus" style="color: rgb(255, 255, 255);"> Зөвшөөрөл</i></button>
                                 </div>
 
                                 </div>
@@ -414,7 +414,7 @@
                     </div>
                     <div class="modal-footer">
                         <div class="col-md-5">
-                            <button type="button" class="btn btn-danger delete">Устгах</button>
+                            <button type="button" class="btn btn-danger deleteitem">Устгах</button>
                         </div>
                         <div class="col-md-7" style="display: inline-block; text-align: right;" >
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Хаах</button>
@@ -456,30 +456,29 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="inputAddress2">Тайлбар</label>
-                                <input type="number" class="form-control" id="responsenote" name="responsenote" placeholder="" maxlength="50">
+                                <input type="text" class="form-control" id="responsenote" name="responsenote" placeholder="" maxlength="50">
                                 </div>
                            
                             <div class="form-group col-md-4">
                                 <label for="inputAddress2">Зөвшөөрлийн төлөв</label>
-                                <input type="number" class="form-control" id="visastatus" name="visastatus" placeholder="" maxlength="50">
+                                <select class="form-control select2" id="visastatus" name="visastatus" >
+                                    @foreach($visatype as $visatypes) 
+                                    <option value="{{$visatypes->type_id}}">{{$visatypes->type_name}}</option>
+                                     @endforeach
+                                    </select>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="inputAddress2">Албан тушаал</label>
                                 <input type="text" class="form-control" id="employeetitle" name="employeetitle" placeholder="" maxlength="50">
                             </div>
-                            <div class="form-group col-md-4">
-                                <label for="inputAddress2">Нэр</label>
-                                <input type="text" class="form-control" id="requestto_empid" name="requestto_empid" placeholder="" maxlength="50">
-                            </div>
-                        
-                           
+                          
                         </div>
 
 
                     </div>
                     <div class="modal-footer">
                         <div class="col-md-5">
-                            <button type="button" class="btn btn-danger delete">Устгах</button>
+                            <button type="button" class="btn btn-danger deletevisa">Устгах</button>
                         </div>
                         <div class="col-md-7" style="display: inline-block; text-align: right;" >
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Хаах</button>
@@ -541,7 +540,7 @@
                     $('#responsenote').val(qwe.responsenote);
                     $('#employeetitle').val(qwe.employeetitle);
                     $('#visastatus').val(qwe.visastatus);
-                    $('#requestto_empid').val(qwe.nfmaterialname);
+                    $('#requestto_empid').val(qwe.requestto_empid);
               
                 });
 
@@ -580,7 +579,7 @@
         "   <td class='m2'>" + qwe.requesttitle + "</td>" +    
         "   <td class='m1'>" + qwe.responsedate + "</td>" +
         "   <td class='m2'>" + qwe.responsenote + "</td>" + 
-        "   <td class='m2'>" + qwe.visastatus + "</td>" +       
+        "   <td class='m2'>" + qwe.type_name + "</td>" +       
         "   <td class='m1'>" + qwe.employeetitle + "</td>" +
         
         
@@ -721,7 +720,7 @@
                     $('#requestto_empid').val('');
             $('.delete').hide();
         });
-        $('#addproduct').on('click',function(){
+        $('.addproduct').on('click',function(){
             var title = document.getElementById("modal-title");
             $('#type').val('1');
             title.innerHTML = "Бараа бүтээгдэхүүн бүртгэх цонх";
@@ -736,9 +735,48 @@
                     $('#nfmaterialcode').val('');
                     $('#nfmaterialname').val('');
               
-            $('.delete').hide();
+            $('.deleteitem').hide();
         });
-      
+        $('.deletevisa').on('click',function(){
+            var itag = $('#visa_id').val();
+
+            $.ajax(
+                {
+                    url: "visa/delete/" + itag,
+                    type: 'GET',
+                    dataType: "JSON",
+                    data: {
+                        "id": itag,
+                        "_method": 'DELETE',
+                    },
+                    success: function () {
+                        alert('Зөвшөөрөл устгагдлаа');
+                    }
+
+                });
+
+            location.reload();
+        });
+        $('.deleteitem').on('click',function(){
+            var itag = $('#item_id').val();
+
+            $.ajax(
+                {
+                    url: "item/delete/" + itag,
+                    type: 'GET',
+                    dataType: "JSON",
+                    data: {
+                        "id": itag,
+                        "_method": 'DELETE',
+                    },
+                    success: function () {
+                        alert('Бүтээгдэхүүн устгагдлаа');
+                    }
+
+                });
+
+            location.reload();
+        });
         $('#form2').submit(function(event){
             var itag = $('#type').val();
         event.preventDefault();

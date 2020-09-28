@@ -70,7 +70,7 @@ Route::get('/visa/delete/{id}', 'OrderController@destroyvisa');
 Route::post('/addvisa','OrderController@storevisa');
 Route::post('/updatevisa','OrderController@updatevisa');
 Route::get('/visafill/{id?}',function($id = 0){
-    $dt=DB::table('V_ORDER_VISAS')->where('visa_id','=',$id)->get();
+    $dt=DB::table('V_ORDER_VISA')->where('visa_id','=',$id)->get();
     return $dt;
 });
 Route::get('/orderitemfill/{id?}',function($id = 0){
@@ -78,7 +78,7 @@ Route::get('/orderitemfill/{id?}',function($id = 0){
     return $dt;
 });
 Route::get('/ordervisafill/{id?}',function($id = 0){
-    $dt=DB::table('V_ORDER_VISAS')->where('order_id','=',$id)->get();
+    $dt=DB::table('V_ORDER_VISA')->where('order_id','=',$id)->get();
     return $dt;
 });
 
@@ -94,6 +94,7 @@ Route::get('/budgetdetailfill/{id?}',function($id = 0){
     $dt=DB::table('UBTZ_YEAR_BUDGET_DETAIL')->where('detail_id','=',$id)->get();
     return $dt;
 });
+Route::post('/updatebudgetdetail','BudgetController@updatedetail');
 Route::get('/budgetdetailsfill/{id?}',function($id = 0){
     $dt=DB::table('UBTZ_YEAR_BUDGET_DETAIL')->where('budget_id','=',$id)->get();
     return $dt;

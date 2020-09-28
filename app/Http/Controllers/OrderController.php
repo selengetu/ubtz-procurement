@@ -37,8 +37,9 @@ class OrderController extends Controller
         $order=DB::select('select t.* from V_PRODUCT_ORDERS t');
         $response=DB::select('select t.* from CONST_RESPONSE t');
         $budget_type=DB::select('select * from CONST_TENDER_BUDGET_SOURCE');
+        $visatype=DB::select('select * from CONST_VISA_TYPE');
         $order_type=DB::select('select * from CONST_ORDERTYPES');
-        return view('order')->with(['department'=>$department,'order'=>$order,'budget_type'=>$budget_type,'order_type'=>$order_type,'response'=>$response]);
+        return view('order')->with(['visatype'=>$visatype,'department'=>$department,'order'=>$order,'budget_type'=>$budget_type,'order_type'=>$order_type,'response'=>$response]);
     }
     public function receivedorder()
     {
@@ -112,11 +113,15 @@ class OrderController extends Controller
 
     public function updateitem(Request $request)
     {
+        $p=  Request::input('perprice');
+        $q = Request::input('quantity');
+        $t;
+        $t=$p * $q;
         $order = DB::table('Order_items')
             ->where('item_id', Request::input('item_id'))
             ->update(['itemcode' => Request::input('itemcode'),'itemname' => Request::input('itemname'),'perprice' => Request::input('perprice'),
             'quantity' => Request::input('quantity'),'trademarks' => Request::input('trademarks'),'nfmaterialcode' => Request::input('nfmaterialcode')
-            ,'nfmaterialname' => Request::input('nfmaterialname')]);
+            ,'nfmaterialname' => Request::input('nfmaterialname'),'totalcost' => $t ]);
             return 'success';
     }
 
@@ -128,8 +133,8 @@ class OrderController extends Controller
      */
     public function destroyitem($id)
     {
-        Department::where('item_id', '=', $id)->delete();
-        return Redirect('item');
+        DB::table('Order_items')->where('item_id', '=', $id)->delete();
+        return 1;
     }
     public function storevisa()
     {
@@ -163,7 +168,7 @@ class OrderController extends Controller
      */
     public function destroyvisa($id)
     {
-        Department::where('order_id', '=', $id)->delete();
-        return Redirect('order');
+        DB::table('Order_visas')->where('visa_id', '=', $id)->delete();
+    
     }
 }

@@ -368,7 +368,7 @@
                     $('#detail_id').val(qwe.detail_id);
                     $('#product_num').val(qwe.product_num);
                     $('#product_name').val(qwe.product_name);
-                    $('#product_quantity').val(qwe.product_quantity.);
+                    $('#product_quantity').val(qwe.product_quantity);
                     $('#product_price').val(qwe.product_price);
                 
                 });
@@ -376,6 +376,22 @@
             });
             $('.delete').show();
         }
+        $('.add').on('click',function(){
+            var title = document.getElementById("modal-title1");
+            title.innerHTML = "Бүтээгдэхүүн бүртгэх цонх";
+            document.getElementById('form2').action = "addbudgetdetail"
+            document.getElementById('form2').method ="post";
+            $('#id').val(qwe.id);
+                    $('#budget_year').val('');
+                    $('#begin_date').val('');
+                    $('#end_date').val('');
+                    $('#department_id').val('');
+                    $('#plan_budget').val('');
+                    $('#expanded_money').val('');
+                    $('#certificateno').val('');
+                
+            $('.delete').hide();
+        });
         $('.update').on('click',function(){
             var title = document.getElementById("modal-title");
             title.innerHTML = "Төсөв засварлах цонх";

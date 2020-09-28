@@ -56,28 +56,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>ТЧ-1</td>
-                                            <td>782309</td>
-                                            <td>Якорь-эд133</td>
-                                            <td>7</td>
-                                            
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>ТЧ-2</td>
-                                            <td>782309</td>
-                                            <td>Якорь-эд133</td>
-                                            <td>0</td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>ТЧ-3</td>
-                                            <td>782309</td>
-                                            <td>Якорь-эд133</td>
-                                            <td>2</td>
-                                            
-                                        </tr>
+                                 
                                     </tbody>
                                     </table>
                                 </div>

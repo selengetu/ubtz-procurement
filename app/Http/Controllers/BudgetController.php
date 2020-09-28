@@ -68,7 +68,15 @@ class BudgetController extends Controller
             ]);
         return Redirect('budget');
     }
-
+    public function updatedetail(Request $request)
+    {
+        $department = DB::table('UBTZ_YEAR_BUDGET_DETAIL')
+            ->where('detail_id', Request::input('detail_id'))
+            ->update(['product_num' => Request::input('product_num'),'product_name' => Request::input('product_name'),'product_quantity' => Request::input('product_quantity'),
+            'product_price' => Request::input('product_price')
+            ]);
+        return Redirect('budget');
+    }
     /**
      * Remove the specified resource from storage.
      *
