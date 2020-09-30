@@ -81,30 +81,30 @@ class CommessionController extends Controller
     public function storemember()
     {
         $tendermember = new Tendermember;
-        $tendermember->member_fullname = Request::input('member_fullname');
-        $tendermember->member_role = Request::input('member_role');
-        $tendermember->ubtz_jobtitle = Request::input('ubtz_jobtitle');
-        $tendermember->ubtz_depid = Request::input('ubtz_depid');
-        $tendermember->member_posno = Request::input('member_posno');
-        $tendermember->tender_check = Request::input('tender_check');
-        $tendermember->contract_check = Request::input('contract_check');
-        $tendermember->email = Request::input('email');
-        $tendermember->phone = Request::input('phone');
-        $tendermember->visa_check = Request::input('visa_check');
+        $tendermember->membername = Request::input('membername');
+        $tendermember->memberrole = Request::input('memberrole');
+        $tendermember->begindate = Request::input('begindate');
+        $tendermember->enddate = Request::input('enddate');
+        $tendermember->denied_person = Request::input('denied_person');
+        $tendermember->denied_date = Request::input('denied_date');
+        $tendermember->employee_id = Request::input('employee_id');
+        $tendermember->commess_id = Request::input('commess_id');
+        $tendermember->member_id = Request::input('member_id');
         $tendermember->save();
         return Redirect('commession');
     }
     public function destroymember($id)
     {
-        $department = DB::table('Tendermembers')->where('memberid', '=', $id)->delete();
+        $department = DB::table('commession_members')->where('member_id', '=', $id)->delete();
         return Redirect('commession');
     }
     public function updatemember(Request $request)
     {
-        $department = DB::table('TENDER_COMMESSION')
-            ->where('commess_id', Request::input('commess_id'))
-            ->update(['createddate' => Request::input('createddate'),'statementnote' => Request::input('statementnote'),'closeddate' => Request::input('closeddate'),
-            'tenderbid_id' => Request::input('tenderbid_id')]);
+        $department = DB::table('commession_members')
+            ->where('member_id', Request::input('member_id'))
+            ->update(['membername' => Request::input('membername'),'memberrole' => Request::input('memberrole'),'begindate' => Request::input('begindate'),
+            'enddate' => Request::input('enddate'), 'denied_person' => Request::input('denied_person'), 'denied_date' => Request::input('denied_date')
+            , 'employee_id' => Request::input('employee_id') , 'commess_id' => Request::input('commess_id') , 'member_id' => Request::input('member_id')]);
         return Redirect('commession');
     }
 

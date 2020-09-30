@@ -126,10 +126,10 @@ Route::get('/historydetail/{id?}',function($id = 0){
 Route::get('/last', 'CommessionController@last')->name('last');
 });
 
-Route::get('/tendermember/delete/{id}', 'CommessionController@destroy');
-Route::post('/addtendermember','CommessionController@store');
-Route::post('/updatetendermember','CommessionController@update');
+Route::get('/tendermember/delete/{id}', 'CommessionController@destroymember');
+Route::post('/addtendermember','CommessionController@storemember');
+Route::post('/updatetendermember','CommessionController@updatemember');
 Route::get('/tendermemberfill/{id?}',function($id = 0){
-    $dt=DB::table('tendermembers')->where('commess_id','=',$id)->get();
+    $dt=DB::table('tendermembers')->where('member_id','=',$id)->get();
     return $dt;
 });

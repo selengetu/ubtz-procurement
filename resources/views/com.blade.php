@@ -144,7 +144,7 @@
                                     </table>
                                 </div>
                                 <div class="col-md-2">
-                                <button data-toggle="modal" data-target="#membermodal" class="btn btn-primary add" style="padding-bottom: 10px;"><i class="fa fa-plus" style="color: rgb(255, 255, 255);"> Гишүүн</i></button>
+                                <button data-toggle="modal" data-target="#membermodal" class="btn btn-primary memberadd" style="padding-bottom: 10px;"><i class="fa fa-plus" style="color: rgb(255, 255, 255);"> Гишүүн</i></button>
                                 </div>
 
                                 </div>
@@ -306,6 +306,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <form id="form1" action="post">
+                    @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="modal-title">Үнэлгээний хороо бүртгэх цонх</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -360,7 +361,8 @@
     <div class="modal fade " id="membermodal" role="dialog" aria-labelledby="exampleModalLabel" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <form id="form1" action="post">
+                <form id="memberform" action="post">
+                    @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="modal-title">Үнэлгээний хорооны гишүүд бүртгэх цонх</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -373,7 +375,8 @@
                         <div class="form-group col-md-4">
                                 <label for="inputAddress2">Ажилтны нэр</label>
                                 <input type="text" class="form-control" id="employee_id" name="employee_id" placeholder="" maxlength="50">
-                           
+                                <input type="hidden" class="form-control" id="member_id" name="member_id" placeholder="" maxlength="50">
+                                <input type="hidden" class="form-control" id="commess_id" name="commess_id" placeholder="" maxlength="50">
                             </div>
                            
                            
@@ -410,6 +413,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <form id="form1" action="post">
+                    @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="modal-title">Тендер бүртгэх цонх</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -586,8 +590,8 @@
         $('.update').on('click',function(){
             var title = document.getElementById("modal-title");
             title.innerHTML = "Үнэлгээний хороо засварлах цонх";
-            document.getElementById('form1').action = "updatecommession";
-            document.getElementById('form1').method ="post"
+            document.getElementById('memberform').action = "updatecommession";
+            document.getElementById('memberform').method ="post"
             var itag=$(this).attr('tag');
             $.get('commessfill/'+itag,function(data){
                 $.each(data,function(i,qwe){
@@ -603,11 +607,11 @@
         });
     </script>
     <script>
-        $('.add').on('click',function(){
+        $('.memberadd').on('click',function(){
             var title = document.getElementById("modal-title");
             title.innerHTML = "Үнэлгээний хороо бүртгэх цонх";
-            document.getElementById('form1').action = "addcommession"
-            document.getElementById('form1').method ="post";
+            document.getElementById('memberform').action = "addtendermember"
+            document.getElementById('memberform').method ="post";
                     $('#commess_id').val('');
                     $('#createddate').val('');
                     $('#statementnote').val('');

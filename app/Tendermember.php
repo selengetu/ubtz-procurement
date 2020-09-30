@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Tendermember extends Model
 {
     public $timestamps = false;
-    protected $table='Tendermembers';
-    protected $primaryKey = 'memberid';
+    protected $table='Commession_members';
+    protected $primaryKey = 'member_id';
 }
