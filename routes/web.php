@@ -125,7 +125,15 @@ Route::get('/historydetail/{id?}',function($id = 0){
 
 Route::get('/last', 'CommessionController@last')->name('last');
 });
+Route::get('/getimage/{id?}',function($id = 0){
+    $dt=DB::table('V_customer_files')->where('customerid','=',$id)->orderby('filecatcode')->get();
+    return $dt;
+});
 
+Route::get('/getcustomer/{id?}',function($id = 0){
+    $dt=DB::table('V_customers')->where('customerid','=',$id)->get();
+    return $dt;
+});
 Route::get('/tendermember/delete/{id}', 'CommessionController@destroymember');
 Route::post('/addtendermember','CommessionController@storemember');
 Route::post('/updatetendermember','CommessionController@updatemember');

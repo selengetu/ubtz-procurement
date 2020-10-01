@@ -92,7 +92,6 @@
                                         <th>Тендер №</th>
                                         <th>Төлөв</th>
                                         <th>Хаасан огноо</th>
-                                       
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -601,7 +600,6 @@
                     $('#closeddate').val(qwe.closeddate);
                     $('#tenderbid_id').val(qwe.tenderbid_id);
                 });
-
             });
             $('.delete').show();
         });
@@ -648,13 +646,12 @@
               $("#commessionitem tbody").empty();
              
               $.each(data,function(i,qwe){
-             
+        
                   var sHtml = " <tr class='table-row' >" +
                   "   <td class='m1'>" + qwe.createddate+ "</td>" +
-                  "   <td class='m1'>" + qwe.statementnote+ "</td>" +
-                     
-                      "   <td class='m2'>" + qwe.tenderbid + "</td>" +
-                      "   <td class='m3'>" + qwe.closeddate + "</td>" +
+                  "   <td class='m1'>" + qwe.statementnote+ "</td>" +                 
+                  "   <td class='m2'>" + qwe.tenderbid + "</td>" +
+                  "   <td class='m3'>" + qwe.closeddate + "</td>" +
                      
                       "</tr>";
 
@@ -668,9 +665,7 @@
     });
     </script>
      <style type="text/css">
-              .disabledTab {
-    pointer-events: none;
-}
-.highlight { background-color: lightskyblue }
+    .disabledTab {pointer-events: none;}
+    .highlight { background-color: lightskyblue }
     </style>
 @endsection

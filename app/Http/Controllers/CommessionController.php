@@ -85,8 +85,7 @@ class CommessionController extends Controller
         $tendermember->memberrole = Request::input('memberrole');
         $tendermember->begindate = Request::input('begindate');
         $tendermember->enddate = Request::input('enddate');
-        $tendermember->denied_person = Request::input('denied_person');
-        $tendermember->denied_date = Request::input('denied_date');
+        $tendermember->denied_reason = Request::input('denied_date');
         $tendermember->employee_id = Request::input('employee_id');
         $tendermember->commess_id = Request::input('commess_id');
         $tendermember->member_id = Request::input('member_id');
