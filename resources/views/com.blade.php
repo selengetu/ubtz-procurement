@@ -125,10 +125,10 @@
                             <br>
                             <div class=row>
                                 <div class="col-md-10">
-                                <table class="table table-striped table-bordered" id="example1">
+                                <table class="table table-striped table-bordered" id="membertable">
                                     <thead>
                                     <tr role="row">
-                                        <th>#</th>
+                                        
                                         <th>Ажилтны нэр</th>
                                         <th>Албан тушаал</th>
                                         <th>Эхлэсэн огноо</th>
@@ -324,7 +324,7 @@
                             <div class="form-group col-md-4">
                                 <label for="inputAddress">Тендер №</label>
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="hidden" class="form-control" id="commess_id" name="commess_id">
+                                <input type="hidden" class="form-control commess_id" id="commess_id" name="commess_id">
                                 <input type="text" class="form-control" id="tenderbid_id" name="tenderbid_id" placeholder="" maxlength="50">
                             </div>
                            
@@ -373,15 +373,19 @@
                         <div class="form-row">
                         <div class="form-group col-md-4">
                                 <label for="inputAddress2">Ажилтны нэр</label>
-                                <input type="text" class="form-control" id="employee_id" name="employee_id" placeholder="" maxlength="50">
+                                <select class="form-control select2" id="employee_id" name="employee_id" >
+                                    @foreach($employee as $employees) 
+                                    <option value="{{$employees->employee_id}}">{{$employees->lastname}} - {{$employees->jobtitle}} - {{$employees->abbr}}</option>
+                                     @endforeach
+                                    </select>
                                 <input type="hidden" class="form-control" id="member_id" name="member_id" placeholder="" maxlength="50">
-                                <input type="hidden" class="form-control" id="commess_id" name="commess_id" placeholder="" maxlength="50">
+                                <input type="hidden" class="form-control commess_id" id="commess_id" name="commess_id" placeholder="" maxlength="50">
                             </div>
                            
                            
                             <div class="form-group col-md-4">
                                 <label for="inputAddress2">Эхэлсэн огноо</label>
-                                <input class="form-control form-control-inline input-medium date-picker" name="begindate" id="enddate"
+                                <input class="form-control form-control-inline input-medium date-picker" name="begindate" id="begindate"
                                    size="16" type="text" value="">
                             </div>
                             
@@ -541,23 +545,19 @@
         });
         function getmember(id)
          {
-            $.get('commessionmemberfill/'+id,function(data){
-            $("#commessionmember tbody").empty();   
+            $.get('tendermemberfill/'+id,function(data){
+            $("#membertable tbody").empty();   
              $.each(data,function(i,qwe){
               var sHtmls = "<tr>" +
-     "   <td class='m2'>" + qwe.itemname + "</td>" +    
-        "   <td class='m1'>" + qwe.itemcode + "</td>" +
-       
-        "   <td class='m1'>" + qwe.quantity + "</td>" +
-        "   <td class='m2'>" + qwe.perprice + "</td>" +    
-        "   <td class='m2'>" + qwe.trademarks + "</td>" +    
-        "   <td class='m2'>" + qwe.nfmaterialcode + "</td>" +    
-        "   <td class='m2'>" + qwe.nfmaterialname + "</td>" +    
-        "   <td class='m2'>" + qwe.totalcost + "</td>" + 
-        "   <td class='m2'>   <button data-toggle='modal' data-target='#productmodal' class='btn btn-primary add btn-sm' style='padding-bottom: 10px;'><i class='fa fa-pencil' style='color: rgb(255, 255, 255);'></i></button> </td>" +  
+     "   <td class='m2'>" + qwe.employee_id + "</td>" +    
+        "   <td class='m1'>" + qwe.begindate + "</td>" +
+        "   <td class='m1'>" + qwe.enddate + "</td>" +
+        "   <td class='m2'>" + qwe.denied_reason + "</td>" +    
+        "   <td class='m2'>" + qwe.denied_date + "</td>" +    
+        "   <td class='m2'>   <button data-toggle='modal' data-target='#membermodal' class='btn btn-primary add btn-sm' style='padding-bottom: 10px;'><i class='fa fa-pencil' style='color: rgb(255, 255, 255);'></i></button> </td>" +  
                                
         "</tr>";
-        $("#item tbody").append(sHtmls);
+        $("#membertable tbody").append(sHtmls);
          });
          
           });
@@ -641,7 +641,7 @@
         $( ".nav-item" ).removeClass("disabled disabledTab");
         $('#tenderbids-tab').trigger('click');
         var itag=$(this).attr('id');
-        console.log(itag);
+        $('.commess_id').val(itag);
         $.get('commessionfill/'+itag,function(data){
               $("#commessionitem tbody").empty();
              
@@ -661,7 +661,7 @@
               });
 
           });
-       
+       getmember(itag);
     });
     </script>
      <style type="text/css">

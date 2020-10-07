@@ -32,12 +32,14 @@ class CommessionController extends Controller
      */
     public function index()
     {
+        $employee=DB::select('select * from V_CONST_EMPLOYEES');
         $department=DB::select('select * from CONST_DEPARTMENTS');
         $budgetsource=DB::select('select * from CONST_TENDER_BUDGET_SOURCE');
         $tendertype=DB::select('select * from CONST_TENDERTYPES');
         $selection=DB::select('select * from CONST_TENDER_SELECTIONS');
         $commession=DB::select('select t.* from V_TENDER_COMMESSION t');
-        return view('com')->with(['selection'=>$selection,'department'=>$department,'commession'=>$commession,'budgetsource'=>$budgetsource,'tendertype'=>$tendertype]);
+        return view('com')->with(['employee'=>$employee,'selection'=>$selection,'department'=>$department,'commession'=>$commession,
+                                    'budgetsource'=>$budgetsource,'tendertype'=>$tendertype]);
     }
     public function store()
     {
@@ -81,8 +83,6 @@ class CommessionController extends Controller
     public function storemember()
     {
         $tendermember = new Tendermember;
-        $tendermember->membername = Request::input('membername');
-        $tendermember->memberrole = Request::input('memberrole');
         $tendermember->begindate = Request::input('begindate');
         $tendermember->enddate = Request::input('enddate');
         $tendermember->denied_reason = Request::input('denied_date');
