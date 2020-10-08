@@ -56,8 +56,7 @@ class CommessionController extends Controller
     {
         $department = DB::table('TENDER_COMMESSION')
             ->where('commess_id', Request::input('commess_id'))
-            ->update(['createddate' => Request::input('createddate'),'statementnote' => Request::input('statementnote'),'closeddate' => Request::input('closeddate'),
-            'tenderbid_id' => Request::input('tenderbid_id')]);
+            ->update(['createddate' => Request::input('createddate'),'statementnote' => Request::input('statementnote'),'closeddate' => Request::input('closeddate')]);
         return Redirect('commession');
     }
 
@@ -69,7 +68,7 @@ class CommessionController extends Controller
      */
     public function destroy($id)
     {
-        Department::where('commess_id', '=', $commess_id)->delete();
+        DB::table('TENDER_COMMESSION')->where('commess_id', '=', $commess_id)->delete();
         return Redirect('commession');
     }
 

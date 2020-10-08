@@ -57,7 +57,7 @@
                                         <th>Тендер №</th>
                                         <th>Төлөв</th>
                                         <th>Хаасан огноо</th>
-                                       
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -67,10 +67,10 @@
                              <tr>
                                 <td>{{$no}}</td>
                                 <td>{{$commessions->createddate}}</td>
-                                <td>{{$commessions->tenderbid_id}}</td>
+
                                 <td>{{$commessions->statementnote}}</td>
                                 <td>{{$commessions->closeddate}}</td>
-                                <td class='m1'> <a class='btn btn-xs btn-info update' data-toggle='modal' data-target='#exampleModal' data-id="{{$commessions->commess_id}}" tag='{{$commessions->commess_id}}'><i class="fa fa-pencil-square-o" style="color: rgb(255, 255, 255); "></i></a> <a id="{{$commessions->commess_id}}" class='btn btn-xs btn-warning order1'  tag='{{$commessions->commess_id}}'><i class="fa fa-line-chart" style="color: rgb(255, 255, 255); "></i></a></td>               
+                                <td class='m1'> <a class='btn btn-xs btn-info updatecommesion' data-toggle='modal' data-target='#exampleModal' data-id="{{$commessions->commess_id}}" tag='{{$commessions->commess_id}}'><i class="fa fa-pencil-square-o" style="color: rgb(255, 255, 255); "></i></a> <a id="{{$commessions->commess_id}}" class='btn btn-xs btn-warning order1'  tag='{{$commessions->commess_id}}'><i class="fa fa-line-chart" style="color: rgb(255, 255, 255); "></i></a></td>               
                                 </tr>
                                 @endforeach
 
@@ -304,7 +304,7 @@
     <div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <form id="form1" action="post">
+                <form id="commessionform" action="post">
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="modal-title">Үнэлгээний хороо бүртгэх цонх</h5>
@@ -346,7 +346,7 @@
                     </div>
                     <div class="modal-footer">
                         <div class="col-md-5">
-                            <button type="button" class="btn btn-danger delete">Устгах</button>
+                            <button type="button" class="btn btn-danger deletecommession">Устгах</button>
                         </div>
                         <div class="col-md-7" style="display: inline-block; text-align: right;" >
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Хаах</button>
@@ -363,7 +363,7 @@
                 <form id="memberform" action="post">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modal-title">Үнэлгээний хорооны гишүүд бүртгэх цонх</h5>
+                        <h5 class="modal-title1" id="modal-title1">Үнэлгээний хорооны гишүүд бүртгэх цонх</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -401,7 +401,7 @@
                     </div>
                     <div class="modal-footer">
                         <div class="col-md-5">
-                            <button type="button" class="btn btn-danger delete">Устгах</button>
+                            <button type="button" class="btn btn-danger deletecommession">Устгах</button>
                         </div>
                         <div class="col-md-7" style="display: inline-block; text-align: right;" >
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Хаах</button>
@@ -415,10 +415,10 @@
         <div class="modal fade " id="tendermodal" role="dialog" aria-labelledby="exampleModalLabel" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <form id="form1" action="post">
+                <form id="tenderform" action="post">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modal-title">Тендер бүртгэх цонх</h5>
+                        <h5 class="modal-title2" id="modal-title2">Тендер бүртгэх цонх</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -537,8 +537,9 @@
 @endsection
 
 @section('script')
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="//jonthornton.github.io/jquery-timepicker/jquery.timepicker.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+  
     <script>
         $(".date-picker").datepicker({
             dateFormat: 'yy-mm-dd'
@@ -586,10 +587,10 @@
     </script>
     <script>
      
-        $('.update').on('click',function(){
-            var title = document.getElementById("modal-title");
+        $('.updatemember').on('click',function(){
+            var title = document.getElementById("modal-title1");
             title.innerHTML = "Үнэлгээний хороо засварлах цонх";
-            document.getElementById('memberform').action = "updatecommession";
+            document.getElementById('memberform').action = "updatemember";
             document.getElementById('memberform').method ="post"
             var itag=$(this).attr('tag');
             $.get('commessfill/'+itag,function(data){
@@ -598,10 +599,27 @@
                     $('#createddate').val(qwe.createddate);
                     $('#statementnote').val(qwe.statementnote);
                     $('#closeddate').val(qwe.closeddate);
-                    $('#tenderbid_id').val(qwe.tenderbid_id);
+              
                 });
             });
             $('.delete').show();
+        });
+        $('.updatecommesion').on('click',function(){
+            var title = document.getElementById("modal-title");
+            title.innerHTML = "Үнэлгээний хороо засварлах цонх";
+            document.getElementById('commessionform').action = "updatecommession";
+            document.getElementById('commessionform').method ="post"
+            var itag=$(this).attr('tag');
+            $.get('commessionfill/'+itag,function(data){
+                $.each(data,function(i,qwe){
+                    $('#commess_id').val(qwe.commess_id);
+                    $('#createddate').val(qwe.createddate);
+                    $('#statementnote').val(qwe.statementnote);
+                    $('#closeddate').val(qwe.closeddate);
+            
+                });
+            });
+            $('.deletecommession').show();
         });
     </script>
     <script>
@@ -617,12 +635,12 @@
                     $('#tenderbid_id').val('');
             $('.delete').hide();
         });
-        $('.delete').on('click',function(){
-            var itag = $('#department_id').val();
+        $('.deletecommession').on('click',function(){
+            var itag = $('#commess_id').val();
 
             $.ajax(
                 {
-                    url: "department/delete/" + itag,
+                    url: "commession/delete/" + itag,
                     type: 'GET',
                     dataType: "JSON",
                     data: {
@@ -634,7 +652,7 @@
                     }
 
                 });
-            alert('Үнэлгээний хороо устгагдлаа');
+            
             location.reload();
         });
         $('.order1').on('click',function(){

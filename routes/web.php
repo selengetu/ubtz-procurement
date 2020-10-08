@@ -107,7 +107,7 @@ Route::get('/commession/delete/{id}', 'CommessionController@destroy');
 Route::post('/addcommession','CommessionController@store');
 Route::post('/updatecommession','CommessionController@update');
 Route::get('/commessionfill/{id?}',function($id = 0){
-    $dt=DB::table('Tender_commession')->where('commess_id','=',$id)->get();
+    $dt=DB::table('v_tender_commession')->where('commess_id','=',$id)->get();
     return $dt;
 });
 
