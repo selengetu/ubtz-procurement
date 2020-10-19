@@ -138,6 +138,6 @@ Route::get('/tendermember/delete/{id}', 'CommessionController@destroymember');
 Route::post('/addtendermember','CommessionController@storemember');
 Route::post('/updatetendermember','CommessionController@updatemember');
 Route::get('/tendermemberfill/{id?}',function($id = 0){
-    $dt=DB::table('commession_members')->where('commess_id','=',$id)->get();
+    $dt=DB::table('v_commession_member')->where('commess_id','=',$id)->get();
     return $dt;
 });

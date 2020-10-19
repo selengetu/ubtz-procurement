@@ -85,7 +85,7 @@
                                 <td>{{$orders->approvedbudgetcomma}}</td>
                                 <td>{{$orders->approveddate}}</td>
                                 <td>{{$orders->department_id}}</td>
-                                <td>{{$orders->orderstatus}}</td>
+                                <td>{{$orders->stataus_name}}</td>
                                 <td>{{$orders->source_name}}</td>
                                 <td>{{$orders->ordertype_name}}</td>
                                 <td class='m1'> <a class='btn btn-xs btn-info updateorder' id="{{$orders->order_id}}" data-toggle='modal' data-target='#exampleModal' data-id="{{$orders->order_id}}" tag='{{$orders->order_id}}'><i class="fa fa-pencil-square-o" style="color: rgb(255, 255, 255); "></i></a></td>
@@ -331,7 +331,11 @@
                                </div>
                             <div class="form-group col-md-4">
                                 <label for="inputAddress2">Захиалгын төлөв</label>
-                                <input type="number" class="form-control" id="orderstatus" name="orderstatus" placeholder="" maxlength="50">
+                                <select class="form-control select2" id="orderstatus" name="orderstatus" >
+                                    @foreach($orderstatus as $orderstatuses) 
+                                    <option value="{{$orderstatuses->status_id}}">{{$orderstatuses->stataus_name}}</option>
+                                     @endforeach
+                                    </select>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="inputAddress2">Төсвийн төрөл</label>
@@ -579,7 +583,7 @@
         "   <td class='m2'>" + qwe.requesttitle + "</td>" +    
         "   <td class='m1'>" + qwe.responsedate + "</td>" +
         "   <td class='m2'>" + qwe.responsenote + "</td>" + 
-        "   <td class='m2'>" + qwe.type_name + "</td>" +       
+        "   <td class='m2'>" + qwe.type_name + " <img src='/img/"+ qwe.type_img +"' alt='profile Pic' height='20' width='20'></td>" +       
         "   <td class='m1'>" + qwe.employeetitle + "</td>" +
         
         

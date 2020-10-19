@@ -67,7 +67,7 @@
                              <tr>
                                 <td>{{$no}}</td>
                                 <td>{{$commessions->createddate}}</td>
-
+                                <td>{{$commessions->statementnote}}</td>
                                 <td>{{$commessions->statementnote}}</td>
                                 <td>{{$commessions->closeddate}}</td>
                                 <td class='m1'> <a class='btn btn-xs btn-info updatecommesion' data-toggle='modal' data-target='#exampleModal' data-id="{{$commessions->commess_id}}" tag='{{$commessions->commess_id}}'><i class="fa fa-pencil-square-o" style="color: rgb(255, 255, 255); "></i></a> <a id="{{$commessions->commess_id}}" class='btn btn-xs btn-warning order1'  tag='{{$commessions->commess_id}}'><i class="fa fa-line-chart" style="color: rgb(255, 255, 255); "></i></a></td>               
@@ -135,7 +135,7 @@
                                         <th>Дууссан огноо</th>
                                         <th>Татгалзсан огноо</th>
                                         <th>Татгалзсан шалтгаан</th>
-                                       
+                                        <th> </th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -550,11 +550,13 @@
             $("#membertable tbody").empty();   
              $.each(data,function(i,qwe){
               var sHtmls = "<tr>" +
-     "   <td class='m2'>" + qwe.employee_id + "</td>" +    
+     "   <td class='m2'>" + qwe.lastname +  " </td>" +    
+     "   <td class='m2'>" + qwe.jobtitle + " </td>" +    
         "   <td class='m1'>" + qwe.begindate + "</td>" +
         "   <td class='m1'>" + qwe.enddate + "</td>" +
-        "   <td class='m2'>" + qwe.denied_reason + "</td>" +    
         "   <td class='m2'>" + qwe.denied_date + "</td>" +    
+        "   <td class='m2'>" + qwe.denied_reason + "</td>" +    
+       
         "   <td class='m2'>   <button data-toggle='modal' data-target='#membermodal' class='btn btn-primary add btn-sm' style='padding-bottom: 10px;'><i class='fa fa-pencil' style='color: rgb(255, 255, 255);'></i></button> </td>" +  
                                
         "</tr>";

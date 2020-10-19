@@ -38,8 +38,9 @@ class OrderController extends Controller
         $response=DB::select('select t.* from CONST_RESPONSE t');
         $budget_type=DB::select('select * from CONST_TENDER_BUDGET_SOURCE');
         $visatype=DB::select('select * from CONST_VISA_TYPE');
+        $orderstatus=DB::select('select * from CONST_ORDER_STATUS');
         $order_type=DB::select('select * from CONST_ORDERTYPES');
-        return view('order')->with(['visatype'=>$visatype,'department'=>$department,'order'=>$order,'budget_type'=>$budget_type,'order_type'=>$order_type,'response'=>$response]);
+        return view('order')->with(['orderstatus'=>$orderstatus,'visatype'=>$visatype,'department'=>$department,'order'=>$order,'budget_type'=>$budget_type,'order_type'=>$order_type,'response'=>$response]);
     }
     public function receivedorder()
     {
