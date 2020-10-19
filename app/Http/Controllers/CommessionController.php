@@ -100,7 +100,7 @@ class CommessionController extends Controller
     {
         $department = DB::table('commession_members')
             ->where('member_id', Request::input('member_id'))
-            ->update(['membername' => Request::input('membername'),'memberrole' => Request::input('memberrole'),'begindate' => Request::input('begindate'),
+            ->update(['begindate' => Request::input('begindate'),
             'enddate' => Request::input('enddate'), 'denied_person' => Request::input('denied_person'), 'denied_date' => Request::input('denied_date')
             , 'employee_id' => Request::input('employee_id') , 'commess_id' => Request::input('commess_id') , 'member_id' => Request::input('member_id')]);
         return Redirect('commession');
