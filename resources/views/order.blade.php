@@ -473,7 +473,12 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="inputAddress2">Албан тушаал</label>
-                                <input type="text" class="form-control" id="employeetitle" name="employeetitle" placeholder="" maxlength="50">
+                                <select class="form-control select2" id="employeetitle" name="employeetitle" >
+                                    @foreach($employee  as $emps) 
+                                    <option value="{{$emps->employee_id}}">{{$emps->lastname}} - {{$emps->jobtitle}}</option>
+                                     @endforeach
+                                    </select>
+                                
                             </div>
                           
                         </div>
@@ -584,7 +589,7 @@
         "   <td class='m1'>" + qwe.responsedate + "</td>" +
         "   <td class='m2'>" + qwe.responsenote + "</td>" + 
         "   <td class='m2'>" + qwe.type_name + " <img src='/img/"+ qwe.type_img +"' alt='profile Pic' height='20' width='20'></td>" +       
-        "   <td class='m1'>" + qwe.employeetitle + "</td>" +
+        "   <td class='m1'>" + qwe.lastname + " - " + qwe.jobtitle + "</td>" +
         
         
         "   <td class='m2'>   <a id="+ qwe.visa_id +"  tag="+ qwe.visa_id +"  onclick=updatevisa("+ qwe.visa_id +") data-toggle='modal' data-target='#visamodal' class='ordervisa btn btn-primary btn-sm' style='padding-bottom: 10px;'><i class='fa fa-pencil' style='color: rgb(255, 255, 255);'></i></a> </td>" +  

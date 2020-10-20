@@ -67,8 +67,8 @@
                              <tr>
                                 <td>{{$no}}</td>
                                 <td>{{$commessions->createddate}}</td>
-                                <td>{{$commessions->statementnote}}</td>
-                                <td>{{$commessions->statementnote}}</td>
+                                <td>{{$commessions->commess_no}}</td>
+                                <td>{{$commessions->tendertype_name}}</td>
                                 <td>{{$commessions->closeddate}}</td>
                                 <td class='m1'> <a class='btn btn-xs btn-info updatecommesion' data-toggle='modal' data-target='#exampleModal' data-id="{{$commessions->commess_id}}" tag='{{$commessions->commess_id}}'><i class="fa fa-pencil-square-o" style="color: rgb(255, 255, 255); "></i></a> <a id="{{$commessions->commess_id}}" class='btn btn-xs btn-warning order1'  tag='{{$commessions->commess_id}}'><i class="fa fa-line-chart" style="color: rgb(255, 255, 255); "></i></a></td>               
                                 </tr>
@@ -325,13 +325,16 @@
                                 <label for="inputAddress">Тендер №</label>
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" class="form-control commess_id" id="commess_id" name="commess_id">
-                                <input type="text" class="form-control" id="tenderbid_id" name="tenderbid_id" placeholder="" maxlength="50">
+                                <input type="text" class="form-control" id="commess_no" name="commess_no" placeholder="" maxlength="50">
                             </div>
                            
                             <div class="form-group col-md-4">
                                 <label for="inputAddress2">Төлөв</label>
-                                <input type="text" class="form-control" id="statementnote" name="statementnote" placeholder="" maxlength="50">
-                               
+                                <select class="form-control select2" id="statementnote" name="statementnote" >
+                                    @foreach($tendertype as $types) 
+                                    <option value= "{{$types->tendertype_id}}">{{$types->tendertype_name}}</option>
+                                     @endforeach
+                                    </select>
                             </div>
                             
                             <div class="form-group col-md-4">
@@ -391,7 +394,7 @@
                             
                             <div class="form-group col-md-4">
                                 <label for="inputAddress2">Дууссан огноо</label>
-                                <input class="form-control form-control-inline input-medium date-picker" name="closeddate" id="closeddate"
+                                <input class="form-control form-control-inline input-medium date-picker" name="enddate" id="enddate"
                                    size="16" type="text" value="">
                             
                                
@@ -499,21 +502,21 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="inputAddress2">Зарлагдсан огноо</label>
-                                <input class="form-control form-control-inline input-medium date-picker" name="closeddate" id="closeddate"
+                                <input class="form-control form-control-inline input-medium date-picker" name="1" id="1"
                                    size="16" type="text" value="">
                             
                                
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="inputAddress2">Нээлтийн огноо</label>
-                                <input class="form-control form-control-inline input-medium date-picker" name="closeddate" id="closeddate"
+                                <input class="form-control form-control-inline input-medium date-picker" name="2" id="2"
                                    size="16" type="text" value="">
                             
                                
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="inputAddress2">Хүлээн авах огноо</label>
-                                <input class="form-control form-control-inline input-medium date-picker" name="closeddate" id="closeddate"
+                                <input class="form-control form-control-inline input-medium date-picker" name="3" id="3"
                                    size="16" type="text" value="">
                             
                                
@@ -618,7 +621,7 @@
                     $('#createddate').val(qwe.createddate);
                     $('#statementnote').val(qwe.statementnote);
                     $('#closeddate').val(qwe.closeddate);
-            
+                    $('#commess_no').val(qwe.commess_no);
                 });
             });
             $('.deletecommession').show();
@@ -632,9 +635,9 @@
             document.getElementById('memberform').method ="post";
                     $('#commess_id').val('');
                     $('#createddate').val('');
-                    $('#statementnote').val('');
+                    $('#statementnote').val('1');
                     $('#closeddate').val('');
-                    $('#tenderbid_id').val('');
+                    $('#commess_no').val('');
             $('.delete').hide();
         });
         $('.deletecommession').on('click',function(){
@@ -669,8 +672,8 @@
         
                   var sHtml = " <tr class='table-row' >" +
                   "   <td class='m1'>" + qwe.createddate+ "</td>" +
+                  "   <td class='m2'>" + qwe.commess_no + "</td>" +
                   "   <td class='m1'>" + qwe.statementnote+ "</td>" +                 
-                  "   <td class='m2'>" + qwe.tenderbid + "</td>" +
                   "   <td class='m3'>" + qwe.closeddate + "</td>" +
                      
                       "</tr>";

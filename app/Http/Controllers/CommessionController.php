@@ -47,7 +47,7 @@ class CommessionController extends Controller
         $commession->createddate = Request::input('createddate');
         $commession->statementnote = Request::input('statementnote');
         $commession->closeddate = Request::input('closeddate');
-        $commession->tenderbid_id = Request::input('tenderbid_id');
+        $commession->commess_no = Request::input('commess_no');
         $commession->save();
         return Redirect('commession');
     }
@@ -56,7 +56,8 @@ class CommessionController extends Controller
     {
         $department = DB::table('TENDER_COMMESSION')
             ->where('commess_id', Request::input('commess_id'))
-            ->update(['createddate' => Request::input('createddate'),'statementnote' => Request::input('statementnote'),'closeddate' => Request::input('closeddate')]);
+            ->update(['createddate' => Request::input('createddate'),'statementnote' => Request::input('statementnote')
+            ,'closeddate' => Request::input('closeddate'),'commess_no' => Request::input('commess_no')]);
         return Redirect('commession');
     }
 
