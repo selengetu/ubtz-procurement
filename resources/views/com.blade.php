@@ -155,13 +155,12 @@
                             <br>
                             <div class=row>
                                 <div class="col-md-10">
-                                <table class="table table-striped table-bordered" id="example1">
+                                <table class="table table-striped table-bordered" id="tendertable">
                                     <thead>
                                     <tr role="row">
-                                        <th>#</th>
+                                       
                                         <th>Ажлын лимит</th>
                                         <th>Тендерийн төрөл</th>
-                                        <th>Захиалагч</th>
                                         <th>Тендер шалгаруулалтын дугаар</th>
                                         <th>Урилгын дугаар</th>
                                         <th>Санхүүжилтийн эх үүсвэр</th>
@@ -173,6 +172,7 @@
                                         <th>Нээлтийн огноо</th>
                                         <th>Хүлээн авах огноо</th>
                                         <th>Үүсгэсэн ажилтан </th>
+                                        <th> </th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -180,7 +180,7 @@
                                     </table>
                                 </div>
                                 <div class="col-md-2">
-                                <button data-toggle="modal" data-target="#tendermodal" class="btn btn-primary add" style="padding-bottom: 10px;"><i class="fa fa-plus" style="color: rgb(255, 255, 255);"> Тендер</i></button>
+                                <button data-toggle="modal" data-target="#tendermodal" class="btn btn-primary tenderadd" style="padding-bottom: 10px;"><i class="fa fa-plus" style="color: rgb(255, 255, 255);"> Тендер</i></button>
                                 </div>
 
                                 </div>
@@ -431,14 +431,14 @@
                         <div class="form-row">
                         <div class="form-group col-md-4">
                                 <label for="inputAddress2">Ажлын лимит</label>
-                                <input type="number" class="form-control" id="employee_id" name="employee_id" placeholder="" maxlength="50">
+                                <input type="number" class="form-control" id="limitcategory_id" name="limitcategory_id" placeholder="" maxlength="50">
                            
                             </div>
                            
                            
                             <div class="form-group col-md-4">
                                 <label for="inputAddress2">Тендерийн төрөл</label>
-                                <select class="form-control select2" id="main_department_id" name="main_department_id" >
+                                <select class="form-control select2" id="tendertype_id" name="tendertype_id" >
                                 @foreach($tendertype as $types) 
                                 <option value= "{{$types->tendertype_id}}">{{$types->tendertype_name}}</option>
                                  @endforeach
@@ -497,26 +497,27 @@
                               
                                 <option value= "1">Тийм</option>
                                 <option value= "2">Үгүй</option>
-                            
+                            </select>
                                
                             </div>
+                           
                             <div class="form-group col-md-4">
                                 <label for="inputAddress2">Зарлагдсан огноо</label>
-                                <input class="form-control form-control-inline input-medium date-picker" name="1" id="1"
+                                <input class="form-control form-control-inline input-medium date-picker" name="publisheddate" id="publisheddate"
                                    size="16" type="text" value="">
                             
                                
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="inputAddress2">Нээлтийн огноо</label>
-                                <input class="form-control form-control-inline input-medium date-picker" name="2" id="2"
+                                <input class="form-control form-control-inline input-medium date-picker" name="bidopeningdate" id="bidopeningdate"
                                    size="16" type="text" value="">
                             
                                
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="inputAddress2">Хүлээн авах огноо</label>
-                                <input class="form-control form-control-inline input-medium date-picker" name="3" id="3"
+                                <input class="form-control form-control-inline input-medium date-picker" name="bidsubmissiondate" id="bidsubmissiondate"
                                    size="16" type="text" value="">
                             
                                
@@ -560,10 +561,39 @@
         "   <td class='m2'>" + qwe.denied_date + "</td>" +    
         "   <td class='m2'>" + qwe.denied_reason + "</td>" +    
        
-        "   <td class='m2'>   <button data-toggle='modal' data-target='#membermodal' class='btn btn-primary add btn-sm' style='padding-bottom: 10px;'><i class='fa fa-pencil' style='color: rgb(255, 255, 255);'></i></button> </td>" +  
+        "   <td class='m2'>   <button data-toggle='modal' data-target='#membermodal' class='btn btn-primary add btn-sm updatemember' tag='" + qwe.member_id + "' style='padding-bottom: 10px;'><i class='fa fa-pencil' style='color: rgb(255, 255, 255);'></i></button> </td>" +  
                                
         "</tr>";
         $("#membertable tbody").append(sHtmls);
+         });
+         
+          });
+         }
+         function gettender(id)
+         {
+            $.get('tenderfill/'+id,function(data){
+            $("#tendertable tbody").empty();   
+             $.each(data,function(i,qwe){
+              var sHtmls = "<tr>" +
+         
+     "   <td class='m2'>" + qwe.limitcategory_name +  " </td>" +    
+     "   <td class='m2'>" + qwe.tendertype_name + " </td>" +    
+        "   <td class='m1'>" + qwe.tenderbidno + "</td>" +
+        "   <td class='m1'>" + qwe.bidreferenceno + "</td>" +
+        "   <td class='m2'>" + qwe.source_name + "</td>" +    
+        "   <td class='m2'>" + qwe.totalbudget + "</td>" +    
+        "   <td class='m2'>" + qwe.yearbudget +  " </td>" +    
+     "   <td class='m2'>" + qwe.tenderselectionabbr + " </td>" +    
+        "   <td class='m1'>" + qwe.electronicbid + "</td>" +
+        "   <td class='m1'>" + qwe.publisheddate + "</td>" +
+        "   <td class='m2'>" + qwe.bidopeningdate + "</td>" +    
+        "   <td class='m2'>" + qwe.bidsubmissiondate + "</td>" +  
+        "   <td class='m2'>" + qwe.createdby_empid + "</td>" +    
+        
+        "   <td class='m2'>   <button data-toggle='modal' data-target='#membermodal' class='btn btn-primary add btn-sm updatemember' tag='" + qwe.tenderbid_id + "' style='padding-bottom: 10px;'><i class='fa fa-pencil' style='color: rgb(255, 255, 255);'></i></button> </td>" +  
+                               
+        "</tr>";
+        $("#tendertable tbody").append(sHtmls);
          });
          
           });
@@ -593,12 +623,13 @@
     <script>
      
         $('.updatemember').on('click',function(){
+            alert('hi');
             var title = document.getElementById("modal-title1");
             title.innerHTML = "Үнэлгээний хороо засварлах цонх";
             document.getElementById('memberform').action = "updatemember";
             document.getElementById('memberform').method ="post"
             var itag=$(this).attr('tag');
-            $.get('commessfill/'+itag,function(data){
+            $.get('tendermemberfill/'+itag,function(data){
                 $.each(data,function(i,qwe){
                     $('#commess_id').val(qwe.commess_id);
                     $('#createddate').val(qwe.createddate);
@@ -639,6 +670,24 @@
                     $('#closeddate').val('');
                     $('#commess_no').val('');
             $('.delete').hide();
+        });
+        $('.tenderadd').on('click',function(){
+            var title = document.getElementById("modal-title");
+            title.innerHTML = "Үнэлгээний хороо бүртгэх цонх";
+            document.getElementById('tenderform').action = "addtender"
+            document.getElementById('tenderform').method ="post";
+                    $('#limitcategory_id').val('1');
+                    $('#tendertype_id').val('1');
+                    $('#tenderbidno').val('');
+                    $('#bidreferenceno').val('');
+                    $('#sourceoffunding').val('');
+                    $('#totalbudget').val('');
+                    $('#yearbudget').val('');
+                    $('#procedureofprocurement').val('1');
+                    $('#electronicbid').val('1');
+                    $('#bidopeningdate').val('');
+                    $('#bidsubmissiondate').val('');
+        
         });
         $('.deletecommession').on('click',function(){
             var itag = $('#commess_id').val();
@@ -685,6 +734,7 @@
 
           });
        getmember(itag);
+       gettender(itag);
     });
     </script>
      <style type="text/css">

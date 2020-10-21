@@ -141,3 +141,15 @@ Route::get('/tendermemberfill/{id?}',function($id = 0){
     $dt=DB::table('v_commession_member')->where('commess_id','=',$id)->get();
     return $dt;
 });
+
+Route::get('/tender/delete/{id}', 'TenderController@destroy');
+Route::post('/addtender','TenderController@store');
+Route::post('/updatetender','TenderController@update');
+Route::get('/tenderfill/{id?}',function($id = 0){
+    $dt=DB::table('v_tenderbids')->where('commess_id','=',$id)->get();
+    return $dt;
+});
+Route::get('/tenderdetailfill/{id?}',function($id = 0){
+    $dt=DB::table('v_tenderbids')->where('tenderbid_id','=',$id)->get();
+    return $dt;
+});
