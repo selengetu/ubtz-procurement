@@ -432,7 +432,7 @@
                         <div class="form-group col-md-4">
                                 <label for="inputAddress2">Ажлын лимит</label>
                                 <input type="number" class="form-control" id="limitcategory_id" name="limitcategory_id" placeholder="" maxlength="50">
-                           
+                                <input type="hidden" class="form-control commess_id" id="commess_id" name="commess_id" placeholder="" maxlength="50">
                             </div>
                            
                            

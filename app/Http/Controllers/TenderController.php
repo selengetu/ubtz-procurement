@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
+use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Session;
@@ -27,6 +28,7 @@ class TenderController extends Controller
         $tender->publisheddate = $request->publisheddate;
         $tender->bidopeningdate =$request->bidopeningdate;
         $tender->bidsubmissiondate = $request->bidsubmissiondate;
+        $tender->commess_id = $request->commess_id;
         $tender->createdby_empid = Auth::id();
         $tender->save();
         return 1;
